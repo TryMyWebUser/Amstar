@@ -1,3 +1,10 @@
+<?php
+
+    include "libs/load.php";
+    $conn = Database::getConnect();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -144,11 +151,14 @@
                                     <ul class="navigation">
                                         <li><a href="index.php">Home</a></li>
                                         <li><a href="about.php">About Us</a></li>
-                                        <li class="dropdown"><a href="">Products</a>
+                                        <li class="dropdown"><a href="#">Products</a>
                                             <ul>
-                                                <li><a href="pump1.php">Submersible Pump</a></li>
-                                                <li><a href="pump2.php">Mono Block Pumps</a></li>
-                                                <li><a href="pump3.php">Openwell Pumps</a></li>
+                                                <?php
+                                                    $category = Operations::getCateChecker($conn);
+                                                    foreach ($category as $cate) {
+                                                ?>
+                                                <li><a href="pump.php?data=<?= $cate['category']; ?>"><?= $cate['category']; ?></a></li>
+                                                <?php } ?>
                                             </ul>
                                         </li>
                                         <li><a href="product.php"></a></li>

@@ -24,6 +24,13 @@ class Operations
         $result = $conn->query($sql);
         return iterator_to_array($result);
     }
+    public static function getProductPage($conn)
+    {
+        $getCate = $_GET['data'];
+        $sql = "SELECT * FROM `products` WHERE `category` = '$getCate'";
+        $result = $conn->query($sql);
+        return iterator_to_array($result);
+    }
     public static function getCateChecker($conn)
     {
         $sql = "SELECT * FROM `category` ORDER BY `created_at` ASC";
@@ -39,19 +46,6 @@ class Operations
     public static function getRProductChecker($conn)
     {
         $sql = "SELECT * FROM `r-product` ORDER BY `created_at` ASC";
-        $result = $conn->query($sql);
-        return iterator_to_array($result);
-    }
-
-    public static function getCatePage($page, $conn)
-    {
-        $sql = "SELECT * FROM `category` WHERE `page` = '$page'";
-        $result = $conn->query($sql);
-        return iterator_to_array($result);
-    }
-    public static function getProductPage($page, $conn)
-    {
-        $sql = "SELECT * FROM `products` WHERE `category` = '$page'";
         $result = $conn->query($sql);
         return iterator_to_array($result);
     }

@@ -52,9 +52,12 @@
                         <h4 class="widget_title">Products</h4>
                         <div class="widget-content">
                             <ul class="list">
-                                <li><a href="pump1.php">Submersible Pump</a></li>
-                                <li><a href="pump2.php">Mono Block Pumps</a></li>
-                                <li><a href="pump3.php">Openwell Pumps</a></li>
+                                <?php
+                                    $category = Operations::getCateChecker($conn);
+                                    foreach ($category as $cate) {
+                                ?>
+                                <li><a href="pump.php?data=<?= $cate['category']; ?>"><?= $cate['category']; ?></a></li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </div>
